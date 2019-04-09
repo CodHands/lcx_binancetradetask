@@ -40,10 +40,11 @@ body {
 
 .trade-history-container {
   position: absolute;
-  top: 50%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%,-50%);
   width: 80%;
+  height: 100vh;
 }
 
 .card-box {
@@ -82,4 +83,27 @@ h6 {
   left: 50%;
   transform: translate(-50%,-50%);
   width: 80%;
+}
+
+.set-view {
+  position: absolute;
+  padding: 0 5px;
+  right: 50px;
+  cursor: pointer;
+}
+
+.set-view p {
+  margin-bottom: 0;
+}
+
+.set-view:hover {
+  text-decoration: underline;
+}
+
+.table-dark {
+  margin-top: 2.25rem ;
+}
+
+.table-dark thead th {
+  color: cadetblue;
 }

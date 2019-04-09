@@ -9,26 +9,22 @@ defaults.global.defaultFontColor = '#fff';
 export default ({tradeHistory}) => {
 
     const [chartData, setchartData] = useState({})
+    const [isChart, setisChart] = useState(false)
 
     useEffect(() => {
-        
-        let dataLabels = tradeHistory.map((t) => moment(t.time).format('hh:mm:ss'))
-        let priceData = tradeHistory.map((p) => p.price);
-        let quantityData = tradeHistory.map((q) => q.qty);
-
         setchartData({
-            labels: dataLabels,
+            labels: tradeHistory.map((t) => moment(t.time).format('hh:mm:ss')),
             datasets: [
                 {
                     label: 'Price',
-                    data: priceData,
+                    data: tradeHistory.map((p) => p.price),
                     borderColor: '#5dcdfa',
                     backgroundColor: 'transparent',
                     pointBorderColor: '#5dcdfa'
                 },
                 {
                     label: 'Quantity',
-                    data: quantityData,
+                    data: tradeHistory.map((q) => q.qty),
                     borderColor: '#b2f1fc',
                     backgroundColor: 'transparent',
                     pointBorderColor: '#b2f1fc'
@@ -54,12 +50,44 @@ export default ({tradeHistory}) => {
         }
     }
 
+    const changeView = () => {
+        setisChart(!isChart)
+    }
+
   return (
     <div className="offset-1 col-sm-10 line-chart">
-        <Line
-            data={chartData}
-            options={options}
-        />
+        <div className="set-view">
+            <p onClick={changeView}>{ isChart ? <img src="/images/line-chart.png" title="View in Chart" alt="chart-icon"/>  : <img src="/images/list.png" title="View in Table" alt="table-icon"/> }</p>
+        </div>
+        {
+            isChart ? 
+            <div>
+                
+                <table className="table table-dark table-striped">
+                    <thead>
+                    <tr>
+                        <th>Price</th>
+                        <th>Quanity</th>
+                        <th>Time</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {tradeHistory.map((trade,index) => {
+                            return <tr key={index}>
+                                        <td>{trade.price}</td>
+                                        <td>{trade.qty}</td>
+                                        <td>{moment(trade.time).format('hh:mm:ss')}</td>
+                                    </tr>
+                        })}
+                    </tbody>
+                </table>
+            </div>
+            : 
+            <Line
+                data={chartData}
+                options={options}
+            />
+        }        
     </div>
   )
 }

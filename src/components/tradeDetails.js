@@ -1,6 +1,6 @@
 import React from 'react'
 
-const TradeDetails = ({tradeInfo}) => {
+const TradeDetails = ({tradeInfo}) => {    
     return (
         <div className="offset-1 col-sm-10">
             <div className="row">

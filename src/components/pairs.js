@@ -18,7 +18,7 @@ const fetchPairList = async() => {
             setPairs(list.symbols)
         }
     } catch(e){
-        console.log(e);
+        throw e;
     }
 }
 
