@@ -1,1 +1,1 @@
-export const BASE_URI = "https://www.binance.com/api/v1/";
+export const BASE_URI = "https://cors-anywhere.herokuapp.com/https://www.binance.com/api/v1/";
