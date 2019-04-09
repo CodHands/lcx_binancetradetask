@@ -12,7 +12,7 @@ const [pairs, setPairs] = useState([])
 
 const fetchPairList = async() => {
     try {
-        let response = await fetch(`${BASE_URI}exchangeInfo`)
+        let response = await fetch(`https://cors-anywhere.herokuapp.com/${BASE_URI}exchangeInfo`)
         let list = await response.json()  
         if(list){
             setPairs(list.symbols)
