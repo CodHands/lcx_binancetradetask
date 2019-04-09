@@ -6,8 +6,8 @@ const MarketPairs = (props) => {
     props.props.history.push(`/trades/${symbol}`);    
   }
 
-  const pairList = () => {
-    if(props.pairs){
+  const pairList = () => {    
+    if(props.pairs.length){
         return props.pairs.slice(0,60).map((pair,index) => {
           return <div className="col-sm-2" onClick={() => handleChange(pair.symbol)} key={index}>
                     <div className="card mb-2">
@@ -16,13 +16,15 @@ const MarketPairs = (props) => {
                   </div>
         })
     } else {
-      return <div>Loading...</div>
+      return <div className="spinner-loader">
+                <img src="/images/loading.gif" alt="loading"/>
+            </div>
     }  
   }
 
   return (
     <div>
-      <h1 className="mb-4">Choose Pair</h1>
+      <h1 className="mb-5">Choose Pair</h1>
       <div className="row tickers">
         {pairList()}
       </div>
