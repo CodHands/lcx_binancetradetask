@@ -18,15 +18,27 @@ export default (props) =>  {
     },[tradeHistory])
 
     const fetchTrades = async () => {
-        let tradesList = await fetch(`${BASE_URI}trades?symbol=${symbol}`)
-        let json = await tradesList.json();
-        settradeHistory(json.slice(0,10))            
+        try {
+            let tradesList = await fetch(`${BASE_URI}trades?symbol=${symbol}`)
+            let json = await tradesList.json();
+            if(json){
+                settradeHistory(json.slice(0,10))            
+            }
+        } catch (e){
+            console.log(e);
+        }
     }
 
     const fetchDetails = async () => {
-        let tradeDetails = await fetch(`${BASE_URI}ticker/24hr?symbol=${symbol}`)
-        let list = await tradeDetails.json();
-        setpairDetails(list)
+        try{
+            let tradeDetails = await fetch(`${BASE_URI}ticker/24hr?symbol=${symbol}`)
+            let list = await tradeDetails.json();
+            if(list){
+                setpairDetails(list)
+            }
+        } catch(e){
+            console.log(e);
+        }
     }
 
     const fetchTradeHistory = (binanceWS) => {        

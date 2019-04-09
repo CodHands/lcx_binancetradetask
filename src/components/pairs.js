@@ -11,9 +11,15 @@ useEffect(() => {
 const [pairs, setPairs] = useState([])
 
 const fetchPairList = async() => {
-    let response = await fetch(`${BASE_URI}exchangeInfo`)
-    let list = await response.json()        
-    setPairs(list.symbols)
+    try {
+        let response = await fetch(`${BASE_URI}exchangeInfo`)
+        let list = await response.json()  
+        if(list){
+            setPairs(list.symbols)
+        }
+    } catch(e){
+        console.log(e);
+    }
 }
 
 return (
