@@ -1,7 +1,8 @@
 import React, {useState, useEffect } from 'react';
 import MarketPairs from '../utils/selectPair';
+import {BASE_URI} from '../services';
 
-const Pairs = () => {
+const Pairs = (props) => {
     
 useEffect(() => {
     fetchPairList();
@@ -10,15 +11,14 @@ useEffect(() => {
 const [pairs, setPairs] = useState([])
 
 const fetchPairList = async() => {
-    let response = await fetch('https://www.binance.com/api/v1/ticker/allPrices');
-    let list = await response.json()
-    setPairs(list)
-    console.log(list);
+    let response = await fetch(`${BASE_URI}exchangeInfo`)
+    let list = await response.json()        
+    setPairs(list.symbols)
 }
 
 return (
     <div className="pairs text-center">
-        <MarketPairs pairs={pairs}/>
+        <MarketPairs pairs={pairs} props={props}/>
     </div>
 );
 }

@@ -1,29 +1,19 @@
-import React, {useState} from 'react';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import React from 'react';
 
-export const MarketPairs = (props) => {
-  const [age, setAge] = useState('');
-  const [open, setOpen] = useState(false);
+const MarketPairs = (props) => {
 
-  function handleChange(event) {
-    setAge(event.target.value);
-  }
-
-  function handleClose() {
-    setOpen(false);
-  }
-
-  function handleOpen() {
-    setOpen(true);
+  const handleChange = (symbol) => {
+    props.props.history.push(`/trades/${symbol}`);    
   }
 
   const pairList = () => {
     if(props.pairs){
-        return props.pairs.slice(0,50).map((pair,index) => {
-          return  <MenuItem key={index} value={pair.symbol}>{pair.symbol}</MenuItem>
+        return props.pairs.slice(0,60).map((pair,index) => {
+          return <div className="col-sm-2" onClick={() => handleChange(pair.symbol)} key={index}>
+                    <div className="card mb-2">
+                        <h6><img src="/images/blockchain.png" width="16" alt="crypto-icon"/>&nbsp;&nbsp;{pair.baseAsset}/{pair.quoteAsset}</h6>
+                    </div>
+                  </div>
         })
     } else {
       return <div>Loading...</div>
@@ -32,24 +22,10 @@ export const MarketPairs = (props) => {
 
   return (
     <div>
-        <form autoComplete="off">
-        <FormControl>
-            <InputLabel htmlFor="demo-controlled-open-select">Select Pair</InputLabel>
-            <Select
-            open={open}
-            onClose={handleClose}
-            onOpen={handleOpen}
-            value={age}
-            onChange={handleChange}
-            inputProps={{
-                name: 'age',
-                id: 'demo-controlled-open-select',
-            }}
-            >
-            {pairList()}
-            </Select>
-        </FormControl>
-        </form>
+      <h1 className="mb-4">Choose Pair</h1>
+      <div className="row tickers">
+        {pairList()}
+      </div>
     </div>
   );
 }

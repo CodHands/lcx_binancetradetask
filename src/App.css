@@ -1,16 +1,79 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+@import url('https://fonts.googleapis.com/css?family=Slabo+27px');
+@import url('https://fonts.googleapis.com/css?family=EB+Garamond');
+
+body {
+  background: #424250;
+  height: 100vh;
+
+}
+
 .App {
   text-align: center;
+  /* position: relative; */
+  font-family: 'Oswald', sans-serif;
+  color: #fff;
 }
 
 .pairs {
-  max-width: 600px;
-  width: 600px;
+  max-width: 80%;
+  width: 80%;
+  height: 100vh;
+  position: relative;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%)
+}
+
+.card {
+  border-radius: 0;
+  border: 2px solid #f75580;
+  background: transparent;
+  color: #fff;
+  font-family: 'Oswald', sans-serif;
+  text-align: left;
+  padding: 15px;
+}
+
+.card p {
+  margin-bottom: 0;
+  font-family: 'Slabo 27px', serif;
+}
+
+.trade-history-container {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%)
+  transform: translate(-50%,-50%);
+  width: 80%;
 }
 
-.MuiFormControl-root-1 {
-  width: 75%;
+.card-box {
+  padding: 0 10px;
+}
+
+.box-1 {
+  border-left: 5px solid #43b980;
+}
+
+.box-2 {
+  border-left: 5px solid #f96850;
+}
+
+.box-3 {
+  border-left: 5px solid #ffad3e;
+}
+
+.line-chart {
+  border: 2px solid #f75580;
+  padding: 15px 30px;
+}
+
+.tickers .card {
+  padding: 10px;
+  cursor: pointer;
+}
+
+h6 {
+  font-family: 'EB Garamond', serif;
 }

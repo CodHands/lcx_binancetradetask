@@ -1,0 +1,1 @@
+export const BASE_URI = "https://www.binance.com/api/v1/";
